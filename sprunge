@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo 'A wgetpaste like tool use as follows `<command> | sprunge`'
+echo
+
+curl -F "sprunge=<-" http://sprunge.us

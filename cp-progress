@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ -z "${1}" ]; then
+  echo "Must pass in source as first argument! Wont continue!";
+  exit -1
+fi
+
+if [ -z "${2}" ]; then
+  echo "Must pass in source as second argument! Wont continue!";
+  exit -1
+fi
+
+
+SOURCE=${1}
+DEST=${2}
+
+[ -d "${DEST}" ] && COPIED_COUNT=$(find "${DEST}" | wc -l)
+SOURCE_COUNT=$(find "${SOURCE}" | wc -l)
+EXPECTED_LINES=$(( ${SOURCE_COUNT} - (${COPIED_COUNT:-1} - 1) ))
+rsync --human-readable -av ${SOURCE} ${DEST} | grep -v "^sending incremental file list" | grep -v "^created directory" | grep -v "^$" | grep -v "^sent [0-9]*" | grep -v "^total size is "  | pv -lep -s ${EXPECTED_LINES} > /dev/null

@@ -1,0 +1,5 @@
+version: '2'
+services:
+  modular-toolbox:
+    build: .
+    image: modjular/toolbox:latest
