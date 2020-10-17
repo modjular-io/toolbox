@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
 
+ENV DEBIAN_FRONTEND="noninteractive"
+#ENV TZ="Europe/London"
+
 LABEL maintainer="Jeffrey Phillips Freeman the@jeffreyfreeman.me"
 
 # Install needed tools
@@ -23,6 +26,20 @@ RUN apt-get update && \
       sed \
       rsync \
       pv \
+      python3 \
+      python2 \
+      python3-pip \
+      git \
+      letsencrypt \
+      certbot \
+      python3-certbot-dns-route53 \
+      python3-certbot-nginx \
+      python3-certbot \
+      awscli \
+      sudo \
+      mysql-client \
+      postgresql \
+      postgresql-contrib \
       gawk && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/*
