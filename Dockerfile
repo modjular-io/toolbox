@@ -40,6 +40,7 @@ RUN apt-get update && \
       mysql-client \
       postgresql \
       postgresql-contrib \
+      mongodb-clients \
       gawk && \
     apt-get clean && \
     rm -r /var/lib/apt/lists/*
